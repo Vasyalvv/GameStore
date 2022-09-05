@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GameStore.DAL\GameStore.DAL.csproj" />
     <ProjectReference Include="..\GameStore.Domain\GameStore.Domain.csproj" />
+    <ProjectReference Include="..\GameStore.Service\GameStore.Service.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 using GameStore.DAL.Context;
+using GameStore.Service.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -26,16 +27,20 @@ namespace GameStore.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<GameStoreDbInitializer>();
             services.AddDbContext<GameStoreDB>(o=>
                 o.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString"))
             );
 
             services.AddControllers();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, GameStoreDbInitializer db)
         {
+            db.Initialize();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
