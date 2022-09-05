@@ -13,6 +13,6 @@ namespace GameStore.Domain.Entities
     public class Game : NamedEntity 
     {
         public Publisher Publisher { get; set; }
-        public IEnumerable<Genre> Genres { get; set; } = new List<Genre>();
+        public ICollection<Genre> Genres { get; set; } = new List<Genre>();
     }
 }

@@ -12,6 +12,6 @@ namespace GameStore.Domain.Entities
     /// </summary>
     public class Genre:NamedEntity
     {
-        public IEnumerable<Game> Games { get; set; } = new List<Game>();
+        public ICollection<Game> Games { get; set; } = new List<Game>();
     }
 }
