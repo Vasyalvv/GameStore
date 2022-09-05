@@ -1,10 +1,11 @@
-﻿using System;
+﻿using GameStore.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameStore.DAL.Context
+namespace GameStore.Service.Data
 {
     public static class TestData
     {
@@ -40,5 +41,31 @@ namespace GameStore.DAL.Context
             new("DOOM (2016)", "id Software", "Shooter"),
             new("Valiant Hearts: The Great War", "Valiant Hearts: The Great War", "Platformer / Action"),
         };
+
+        /// <summary>
+        /// Преобразование строки списка жанров в List<string>
+        /// </summary>
+        /// <param name="Genres">Строка списка жанров с разделителем "/"</param>
+        /// <returns>Список жанров</returns>
+        public static List<string> GenresToList(string Genres)
+        {
+            return Genres.Replace(" ", "").Split('/').ToList();
+        }
+
+        /// <summary>
+        /// Поиск списка жанров в источнике
+        /// </summary>
+        /// <param name="Genres">Список жанров которые необходимо найти</param>
+        /// <param name="Source">Источник списка жанров</param>
+        /// <returns>Список найденых жанров</returns>
+        public static List<Genre> FindGenresByName(List<string> Genres, List<Genre> Source)
+        {
+            List<Genre> result = new List<Genre>();
+            foreach (var genre in Genres)
+                if (Source.Find(s => s.Name == genre) is { } item)
+                    result.Add(item);
+
+            return result;
+        }
     }
 }
