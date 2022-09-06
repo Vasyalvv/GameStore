@@ -121,11 +121,11 @@ namespace GameStore.Service.Services.InSQL
             var item = _db.Games.
                 Include(g => g.Publisher).
                 Include(g => g.Genres).
-                FirstOrDefault(g => g.Id == GameUpdated.Id)??
+                FirstOrDefault(g => g.Id == GameUpdated.Id) ??   //Пробуем найти игру по Id
                 _db.Games.
                 Include(g => g.Publisher).
                 Include(g => g.Genres).
-                FirstOrDefault(g => g.Name == GameUpdated.Name);
+                FirstOrDefault(g => g.Name == GameUpdated.Name);    //Ищем игру по имени, если по Id ничего не найдено
 
             if (item is null)
             {
@@ -135,20 +135,41 @@ namespace GameStore.Service.Services.InSQL
             //Обновляем имя игры
             item.Name = GameUpdated.Name;
             _db.SaveChanges();
+
+            # region Обновляем издателя игры
             try
             {
-                //Обновляем издателя игры
-                if (item.Publisher.Name != GameUpdated.Publisher.Name)
+                Publisher publisher = null;
+                //Если Id издателя на изменилось, но изменилось его название, то обновляем название издателя
+                if (item.Publisher.Id == GameUpdated.Publisher.Id && item.Publisher.Name != GameUpdated.Publisher.Name)
                 {
-                    _PublisherService.Update(GameUpdated.Publisher);
+                    int id = _PublisherService.Update(GameUpdated.Publisher).Id;
+                    publisher = _db.Publishers.FirstOrDefault(p => p.Id == id);
                 }
+                //Если Id издателя изменился, то задаем игре существующего издателя по Id
+                else if (item.Publisher.Id != GameUpdated.Publisher.Id)
+                {
+                    publisher = _db.Publishers.FirstOrDefault(p => p.Id == GameUpdated.Publisher.Id);
+                }
+                //Если издателя не нашли по Id, пробуем найти по имени
+                else if(publisher is null)
+                {
+                    //Если издателя с таким именем не существует, то создаем нового
+                    publisher = _db.Publishers.FirstOrDefault(p => p.Name == GameUpdated.Publisher.Name)??
+                        new Publisher { Name= GameUpdated.Publisher.Name };
+                }
+
+                item.Publisher = publisher;
+                _db.SaveChanges();
             }
             catch (Exception)
             {
                 _Logger.LogError("Не удалось изменить издателя {0} при обновлении игры", GameUpdated.Publisher.Name);
                 return false;
             }
-            
+
+            #endregion
+
             #region Обновляем жанр игры
 
             try
@@ -189,12 +210,12 @@ namespace GameStore.Service.Services.InSQL
             Game game = new Game();
             game.Id = 0;
             game.Name = GameDTO.Name;
-    
+
             game.Publisher = _db.Publishers.FirstOrDefault(p => p.Name == GameDTO.Publisher.Name) ??
-                new Publisher { Name= GameDTO .Publisher.Name};
+                new Publisher { Name = GameDTO.Publisher.Name };
             foreach (var genreDto in GameDTO.Genres)
             {
-                var genre = _db.Genres.FirstOrDefault(g => g.Name == genreDto.Name)??
+                var genre = _db.Genres.FirstOrDefault(g => g.Name == genreDto.Name) ??
                     new Genre { Name = genreDto.Name };
                 game.Genres.Add(genre);
                 genre.Games.Add(game);
