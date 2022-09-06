@@ -10,16 +10,28 @@ namespace GameStore.Service.Mapping
 {
     public static class GenreMapping
     {
-        public static GenreDTO ToDTO(this Genre Genre) => new GenreDTO
+        public static GenreDTO ToDTO(this Genre Genre)
         {
-            Id = Genre.Id,
-            Name = Genre.Name
-        };
+            if (Genre is null)
+                return null;
 
-        public static Genre FromDTO(this GenreDTO GenreDTO) => new Genre
+            return new GenreDTO
+            {
+                Id = Genre.Id,
+                Name = Genre.Name
+            };
+        }
+
+        public static Genre FromDTO(this GenreDTO GenreDTO)
         {
-            Id = GenreDTO.Id,
-            Name = GenreDTO.Name
-        };
+            if (GenreDTO is null)
+                return null;
+
+            return new Genre
+            {
+                Id = GenreDTO.Id,
+                Name = GenreDTO.Name
+            };
+        }
     }
 }
