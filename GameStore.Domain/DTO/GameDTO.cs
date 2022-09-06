@@ -14,6 +14,6 @@ namespace GameStore.Domain.DTO
 
         public PublisherDTO Publisher { get; set; }
 
-        public IList<GenreDTO> Genres { get; set; }
+        public IList<GenreDTO> Genres { get; set; } = new List<GenreDTO>();
     }
 }
