@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -43,6 +44,20 @@ namespace GameStore.WebApi
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GameStore.WebApi", Version = "v1" });
+
+                const string gamestore_api_xml = "GAmeStore.WebApi.xml";
+                const string gamestore_domain_xml = "GAmeStore.Domain.xml";
+                const string debug_path = "bin/debug/net5.0";
+
+                if (File.Exists(gamestore_api_xml))
+                    c.IncludeXmlComments(gamestore_api_xml);
+                else if (File.Exists(Path.Combine(debug_path, gamestore_api_xml)))
+                    c.IncludeXmlComments(Path.Combine(debug_path, gamestore_api_xml));
+
+                if (File.Exists(gamestore_domain_xml))
+                    c.IncludeXmlComments(gamestore_domain_xml);
+                else if (File.Exists(Path.Combine(debug_path, gamestore_domain_xml)))
+                    c.IncludeXmlComments(Path.Combine(debug_path, gamestore_domain_xml));
             });
         }
 
