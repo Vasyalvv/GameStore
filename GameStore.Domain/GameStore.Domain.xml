@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GameStore.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:GameStore.Domain.DTO.GameDTO">
+            <summary>
+            DTO-модель сущности Игра
+            </summary>
+        </member>
+        <member name="P:GameStore.Domain.DTO.GameDTO.Id">
+            <summary>
+            Идентификатор
+            </summary>
+        </member>
+        <member name="P:GameStore.Domain.DTO.GameDTO.Name">
+            <summary>
+            Название игры
+            </summary>
+        </member>
+        <member name="P:GameStore.Domain.DTO.GameDTO.Publisher">
+            <summary>
+            Издатель игры
+            </summary>
+        </member>
+        <member name="P:GameStore.Domain.DTO.GameDTO.Genres">
+            <summary>
+            Список жанров к которым отностися игра
+            </summary>
+        </member>
+        <member name="T:GameStore.Domain.DTO.GenreDTO">
+            <summary>
+            DTO-модель сущности Жанр
+            </summary>
+        </member>
+        <member name="P:GameStore.Domain.DTO.GenreDTO.Id">
+            <summary>
+            Идентификатор
+            </summary>
+        </member>
+        <member name="P:GameStore.Domain.DTO.GenreDTO.Name">
+            <summary>
+            Название игрового жанра
+            </summary>
+        </member>
+        <member name="T:GameStore.Domain.DTO.PublisherDTO">
+            <summary>
+            DTO-модель сущности Издатель
+            </summary>
+        </member>
+        <member name="P:GameStore.Domain.DTO.PublisherDTO.Id">
+            <summary>
+            Идентификатор
+            </summary>
+        </member>
+        <member name="P:GameStore.Domain.DTO.PublisherDTO.Name">
+            <summary>
+            Название издателя
+            </summary>
+        </member>
+        <member name="T:GameStore.Domain.Entities.Game">
+            <summary>
+            Видеоигра
+            </summary>
+        </member>
+        <member name="T:GameStore.Domain.Entities.Genre">
+            <summary>
+            Жанр игры
+            </summary>
+        </member>
+        <member name="T:GameStore.Domain.Entities.Publisher">
+            <summary>
+            Издатель игры
+            </summary>
+        </member>
+    </members>
+</doc>

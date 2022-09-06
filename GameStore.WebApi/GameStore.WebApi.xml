@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GameStore.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:GameStore.WebApi.Controllers.GameApiController">
+            <summary>
+            API контроллер взаимодействия с сущностью Игра
+            </summary>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.GameApiController.Add(GameStore.Domain.DTO.GameDTO)">
+            <summary>
+            Добавление новой игры
+            </summary>
+            <param name="Game">Игра</param>
+            <returns>Идентификатор добавленной игры</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.GameApiController.Delete(System.Int32)">
+            <summary>
+            Удаление игры
+            </summary>
+            <param name="Id">Идентификатор игры</param>
+            <returns>Результат удаления</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.GameApiController.Get">
+            <summary>
+            Получение списка всех игр
+            </summary>
+            <returns>Список игр</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.GameApiController.Get(System.Int32)">
+            <summary>
+            Получение игры по идентификатору
+            </summary>
+            <param name="Id">Идентификатор игры</param>
+            <returns>Ирга</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.GameApiController.GetByGenre(System.Int32)">
+            <summary>
+            Получение списка игр по жанру
+            </summary>
+            <param name="Id">Идентификатор жанра</param>
+            <returns>Список игр</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.GameApiController.GetByGenre(System.String)">
+            <summary>
+            Получение списка игр по жанру
+            </summary>
+            <param name="Name">Название жанра</param>
+            <returns>Список игр</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.GameApiController.GetByName(System.String)">
+            <summary>
+            Получение игры по названию
+            </summary>
+            <param name="Name">Название игры</param>
+            <returns>Игра</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.GameApiController.Update(GameStore.Domain.DTO.GameDTO)">
+            <summary>
+            Обновление информации игры
+            </summary>
+            <param name="Game">Игра</param>
+            <returns>Результат обновления</returns>
+        </member>
+        <member name="T:GameStore.WebApi.Controllers.GenreApiController">
+            <summary>
+            API контроллер взаимодействия с сущностью Жанр
+            </summary>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.GenreApiController.Add(GameStore.Domain.DTO.GenreDTO)">
+            <summary>
+            Добавление нового игрового жанра
+            </summary>
+            <param name="Genre">Игровой жанр</param>
+            <returns>Идентификатор добавленного игрового жанра</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.GenreApiController.Add(System.Collections.Generic.IEnumerable{GameStore.Domain.DTO.GenreDTO})">
+            <summary>
+            Добавление списка новых игровых жанров
+            </summary>
+            <param name="Genres">Список игровых жанров</param>
+            <returns>Список созданных игровых жанров</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.GenreApiController.Delete(System.Int32)">
+            <summary>
+            Удаление игрового жанра
+            </summary>
+            <param name="Id">Идентификатор игрового жанра</param>
+            <returns>Результат удаления</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.GenreApiController.Get">
+            <summary>
+            Получение списка всех игровых жанров
+            </summary>
+            <returns>Список игровых жанров</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.GenreApiController.Get(System.Int32)">
+            <summary>
+            Получение игрового жарна по идентификатору
+            </summary>
+            <param name="Id">Идентификатор игрового жанра</param>
+            <returns>Игровой жанр</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.GenreApiController.GetByName(System.String)">
+            <summary>
+            Получение игрового жарна по названию
+            </summary>
+            <param name="Name">Название игрового жанра</param>
+            <returns>Игровой жанр</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.GenreApiController.Update(GameStore.Domain.DTO.GenreDTO)">
+            <summary>
+            Обновление информации об игровом жанре
+            </summary>
+            <param name="Genre">Жанр</param>
+            <returns>Обновленная запись игрового жанра</returns>
+        </member>
+        <member name="T:GameStore.WebApi.Controllers.PublisherApiController">
+            <summary>
+            API контроллер взаимодействия с сущностью Издатель
+            </summary>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.PublisherApiController.Add(GameStore.Domain.DTO.PublisherDTO)">
+            <summary>
+            Добавление нового издателя игр
+            </summary>
+            <param name="Publisher">Добавляемый издатель</param>
+            <returns>Идентификатор добавленного издателя, возвращается -1 в случае ошибки</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.PublisherApiController.Delete(System.Int32)">
+            <summary>
+            Удаление издателя игр
+            </summary>
+            <param name="Id">Идентификатор удаляемого издателя</param>
+            <returns>Результат удаления</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.PublisherApiController.Get">
+            <summary>
+            Получение списка всех издателей
+            </summary>
+            <returns>Список издателей</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.PublisherApiController.Get(System.Int32)">
+            <summary>
+            Получение издателя по идентификатору
+            </summary>
+            <param name="Id">Идентификатор издателя</param>
+            <returns>Издатель</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.PublisherApiController.GetByName(System.String)">
+            <summary>
+            Получение издателя по названию
+            </summary>
+            <param name="Name">Название издателя</param>
+            <returns>Издатель</returns>
+        </member>
+        <member name="M:GameStore.WebApi.Controllers.PublisherApiController.Update(GameStore.Domain.DTO.PublisherDTO)">
+            <summary>
+            Обновление информации издателя
+            </summary>
+            <param name="Publisher">Издатель</param>
+            <returns>Обновленная запись издателя</returns>
+        </member>
+    </members>
+</doc>
