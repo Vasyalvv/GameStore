@@ -21,14 +21,14 @@ namespace GameStore.Interfaces.Services
         /// </summary>
         /// <param name="Id">Идентификатор игры</param>
         /// <returns>Игра</returns>
-        IEnumerable<GameDTO> Get(int Id);
+        GameDTO Get(int Id);
 
         /// <summary>
         /// Получить игру по названию
         /// </summary>
         /// <param name="Name">Название игры</param>
         /// <returns>Игра</returns>
-        IEnumerable<GameDTO> GetByName(string Name);
+        GameDTO GetByName(string Name);
 
         /// <summary>
         /// Получить все игры определенного жанра
