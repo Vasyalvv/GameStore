@@ -1,5 +1,7 @@
 using GameStore.DAL.Context;
+using GameStore.Interfaces.Services;
 using GameStore.Service.Data;
+using GameStore.Service.Services.InSQL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -32,14 +34,17 @@ namespace GameStore.WebApi
                 o.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString"))
             );
 
+            services.AddTransient<IGameService, SqlGameService>();
+            services.AddTransient<IPublisherService, SqlPublisherService>();
+            services.AddTransient<IGenreService, SqlGenreService>();
             services.AddControllers();
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, GameStoreDbInitializer db)
         {
-            db.Initialize();
+            db.Initialize();    //Инициализация БД тестовыми значениями
 
             if (env.IsDevelopment())
             {
