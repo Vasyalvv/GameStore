@@ -80,8 +80,11 @@ namespace GameStore.Service.Services.InSQL
 
             try
             {
+
                 if (Publisher.Id == 0)  //Если Id==0 в DTO модели, то нужно создать нового издателя
                     id = Add(Publisher);
+                else if (_db.Publishers.FirstOrDefault(p => p.Id == Publisher.Id) is null)
+                    throw new ArgumentOutOfRangeException();
                 else
                 {                       //Иначе, редактируем существующего издателя
                     _db.Publishers.
