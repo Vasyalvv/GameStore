@@ -19,50 +19,50 @@ namespace GameStore.Interfaces.Services
         /// <summary>
         /// Получить игру по идентификатору
         /// </summary>
-        /// <param name="Id">Идентификатор игры</param>
+        /// <param name="id">Идентификатор игры</param>
         /// <returns>Игра</returns>
-        GameDTO Get(int Id);
+        GameDTO Get(int id);
 
         /// <summary>
         /// Получить игру по названию
         /// </summary>
-        /// <param name="Name">Название игры</param>
+        /// <param name="name">Название игры</param>
         /// <returns>Игра</returns>
-        GameDTO GetByName(string Name);
+        GameDTO GetByName(string name);
 
         /// <summary>
         /// Получить все игры определенного жанра
         /// </summary>
-        /// <param name="Id">Идентификатор жанра</param>
+        /// <param name="id">Идентификатор жанра</param>
         /// <returns>Список игр</returns>
-        IEnumerable<GameDTO> GetByGenre(int Id);
+        IEnumerable<GameDTO> GetByGenre(int id);
 
         /// <summary>
         /// Получить все игры определенного жанра
         /// </summary>
-        /// <param name="Name">Имя жанра</param>
+        /// <param name="name">Имя жанра</param>
         /// <returns>Список игр</</returns>
-        IEnumerable<GameDTO> GetByGenre(string Name);
+        IEnumerable<GameDTO> GetByGenre(string name);
 
         /// <summary>
         /// Добавить игру
         /// </summary>
-        /// <param name="Game">Игра</param>
+        /// <param name="game">Игра</param>
         /// <returns>Идентификатор добавленной игры</returns>
-        int Add(GameDTO Game);
+        int Add(GameDTO game);
 
         /// <summary>
         /// Обновить данные игры
         /// </summary>
-        /// <param name="Game">Игра</param>
+        /// <param name="game">Игра</param>
         /// <returns>Результат обновления</returns>
-        bool Update(GameDTO Game);
+        bool Update(GameDTO game);
 
         /// <summary>
         /// Удалить игру
         /// </summary>
-        /// <param name="Id">Идентификатор игры</param>
+        /// <param name="id">Идентификатор игры</param>
         /// <returns>Результат удаления</returns>
-        bool Delete(int Id);
+        bool Delete(int id);
     }
 }

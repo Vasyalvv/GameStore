@@ -47,7 +47,6 @@ namespace GameStore.Service.Services.InSQL
             {
                 //Удаляем издателя
                 _db.Publishers.Remove(publisher);
-
                 _db.SaveChanges();
             }
             catch (Exception)

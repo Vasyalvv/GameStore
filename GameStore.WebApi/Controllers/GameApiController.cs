@@ -16,33 +16,33 @@ namespace GameStore.WebApi.Controllers
     [ApiController]
     public class GameApiController : ControllerBase,IGameService
     {
-        private readonly IGameService _GameService;
+        private readonly IGameService _gameService;
 
-        public GameApiController(IGameService GameService)
+        public GameApiController(IGameService gameService)
         {
-            _GameService = GameService;
+            _gameService = gameService;
         }
 
         /// <summary>
         /// Добавление новой игры
         /// </summary>
-        /// <param name="Game">Игра</param>
+        /// <param name="game">Игра</param>
         /// <returns>Идентификатор добавленной игры</returns>
         [HttpPost]
-        public int Add(GameDTO Game)
+        public int Add(GameDTO game)
         {
-            return _GameService.Add(Game);
+            return _gameService.Add(game);
         }
 
         /// <summary>
         /// Удаление игры
         /// </summary>
-        /// <param name="Id">Идентификатор игры</param>
+        /// <param name="id">Идентификатор игры</param>
         /// <returns>Результат удаления</returns>
-        [HttpDelete("{Id}")]
-        public bool Delete(int Id)
+        [HttpDelete("{id}")]
+        public bool Delete(int id)
         {
-            return _GameService.Delete(Id);
+            return _gameService.Delete(id);
         }
 
         /// <summary>
@@ -52,62 +52,62 @@ namespace GameStore.WebApi.Controllers
         [HttpGet]
         public IEnumerable<GameDTO> Get()
         {
-            return _GameService.Get();
+            return _gameService.Get();
         }
 
         /// <summary>
         /// Получение игры по идентификатору
         /// </summary>
-        /// <param name="Id">Идентификатор игры</param>
+        /// <param name="id">Идентификатор игры</param>
         /// <returns>Ирга</returns>
-        [HttpGet("{Id}")]
-        public GameDTO Get(int Id)
+        [HttpGet("{id}")]
+        public GameDTO Get(int id)
         {
-            return _GameService.Get(Id);
+            return _gameService.Get(id);
         }
 
         /// <summary>
         /// Получение списка игр по жанру
         /// </summary>
-        /// <param name="Id">Идентификатор жанра</param>
+        /// <param name="id">Идентификатор жанра</param>
         /// <returns>Список игр</returns>
-        [HttpGet("genre/{Id}")]
-        public IEnumerable<GameDTO> GetByGenre(int Id)
+        [HttpGet("genre/{id}")]
+        public IEnumerable<GameDTO> GetByGenre(int id)
         {
-            return _GameService.GetByGenre(Id);
+            return _gameService.GetByGenre(id);
         }
 
         /// <summary>
         /// Получение списка игр по жанру
         /// </summary>
-        /// <param name="Name">Название жанра</param>
+        /// <param name="name">Название жанра</param>
         /// <returns>Список игр</returns>
         [HttpGet("genre")]
-        public IEnumerable<GameDTO> GetByGenre(string Name)
+        public IEnumerable<GameDTO> GetByGenre(string name)
         {
-            return _GameService.GetByGenre(Name);
+            return _gameService.GetByGenre(name);
         }
 
         /// <summary>
         /// Получение игры по названию
         /// </summary>
-        /// <param name="Name">Название игры</param>
+        /// <param name="name">Название игры</param>
         /// <returns>Игра</returns>
         [HttpGet("game")]
-        public GameDTO GetByName(string Name)
+        public GameDTO GetByName(string name)
         {
-            return _GameService.GetByName(Name);
+            return _gameService.GetByName(name);
         }
 
         /// <summary>
         /// Обновление информации игры
         /// </summary>
-        /// <param name="Game">Игра</param>
+        /// <param name="game">Игра</param>
         /// <returns>Результат обновления</returns>
         [HttpPut]
-        public bool Update(GameDTO Game)
+        public bool Update(GameDTO game)
         {
-            return _GameService.Update(Game);
+            return _gameService.Update(game);
         }
     }
 }
