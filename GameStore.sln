@@ -3,15 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.WebApi", "GameStore.WebApi\GameStore.WebApi.csproj", "{80C0BA02-6790-4ECA-9D9C-A3A13D1A09B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameStore.WebApi", "GameStore.WebApi\GameStore.WebApi.csproj", "{80C0BA02-6790-4ECA-9D9C-A3A13D1A09B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.Domain", "GameStore.Domain\GameStore.Domain.csproj", "{9C663431-D76F-4D64-AC2D-797AED12B136}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameStore.Domain", "GameStore.Domain\GameStore.Domain.csproj", "{9C663431-D76F-4D64-AC2D-797AED12B136}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.DAL", "GameStore.DAL\GameStore.DAL.csproj", "{FCE52F5E-4E79-4E24-94E0-2DF66B92AF47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameStore.DAL", "GameStore.DAL\GameStore.DAL.csproj", "{FCE52F5E-4E79-4E24-94E0-2DF66B92AF47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.Service", "GameStore.Service\GameStore.Service.csproj", "{C6F89E41-EE9F-411F-9A33-13F43CFB25D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameStore.Service", "GameStore.Service\GameStore.Service.csproj", "{C6F89E41-EE9F-411F-9A33-13F43CFB25D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.Interfaces", "GameStore.Interfaces\GameStore.Interfaces.csproj", "{F8A2197C-4F47-4993-A5D8-F504D79754CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameStore.Interfaces", "GameStore.Interfaces\GameStore.Interfaces.csproj", "{F8A2197C-4F47-4993-A5D8-F504D79754CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{28D4DDB9-52DF-4195-A2DB-547065F14771}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
