@@ -16,44 +16,44 @@ namespace GameStore.WebApi.Controllers
     [ApiController]
     public class GenreApiController : ControllerBase,IGenreService
     {
-        private readonly IGenreService _GenreService;
+        private readonly IGenreService _genreService;
 
-        public GenreApiController(IGenreService GenreService)
+        public GenreApiController(IGenreService genreService)
         {
-            _GenreService = GenreService;
+            _genreService = genreService;
         }
 
         /// <summary>
         /// Добавление нового игрового жанра
         /// </summary>
-        /// <param name="Genre">Игровой жанр</param>
+        /// <param name="genre">Игровой жанр</param>
         /// <returns>Идентификатор добавленного игрового жанра</returns>
         [HttpPost]
-        public int Add(GenreDTO Genre)
+        public int Add(GenreDTO genre)
         {
-            return _GenreService.Add(Genre);
+            return _genreService.Add(genre);
         }
 
         /// <summary>
         /// Добавление списка новых игровых жанров
         /// </summary>
-        /// <param name="Genres">Список игровых жанров</param>
+        /// <param name="genres">Список игровых жанров</param>
         /// <returns>Список созданных игровых жанров</returns>
         [HttpPost("list")]
-        public IEnumerable<GenreDTO> Add(IEnumerable<GenreDTO> Genres)
+        public IEnumerable<GenreDTO> Add(IEnumerable<GenreDTO> genres)
         {
-            return _GenreService.Add(Genres);
+            return _genreService.Add(genres);
         }
 
         /// <summary>
         /// Удаление игрового жанра
         /// </summary>
-        /// <param name="Id">Идентификатор игрового жанра</param>
+        /// <param name="id">Идентификатор игрового жанра</param>
         /// <returns>Результат удаления</returns>
-        [HttpDelete("{Id}")]
-        public bool Delete(int Id)
+        [HttpDelete("{id}")]
+        public bool Delete(int id)
         {
-            return _GenreService.Delete(Id);
+            return _genreService.Delete(id);
         }
 
         /// <summary>
@@ -63,40 +63,40 @@ namespace GameStore.WebApi.Controllers
         [HttpGet]
         public IEnumerable<GenreDTO> Get()
         {
-            return _GenreService.Get();
+            return _genreService.Get();
         }
 
         /// <summary>
         /// Получение игрового жарна по идентификатору
         /// </summary>
-        /// <param name="Id">Идентификатор игрового жанра</param>
+        /// <param name="id">Идентификатор игрового жанра</param>
         /// <returns>Игровой жанр</returns>
-        [HttpGet("{Id}")]
-        public GenreDTO Get(int Id)
+        [HttpGet("{id}")]
+        public GenreDTO Get(int id)
         {
-            return _GenreService.Get(Id);
+            return _genreService.Get(id);
         }
 
         /// <summary>
         /// Получение игрового жарна по названию
         /// </summary>
-        /// <param name="Name">Название игрового жанра</param>
+        /// <param name="name">Название игрового жанра</param>
         /// <returns>Игровой жанр</returns>
         [HttpGet("genre")]
-        public GenreDTO GetByName(string Name)
+        public GenreDTO GetByName(string name)
         {
-            return _GenreService.GetByName(Name);
+            return _genreService.GetByName(name);
         }
 
         /// <summary>
         /// Обновление информации об игровом жанре
         /// </summary>
-        /// <param name="Genre">Жанр</param>
+        /// <param name="genre">Жанр</param>
         /// <returns>Обновленная запись игрового жанра</returns>
         [HttpPut]
-        public GenreDTO Update(GenreDTO Genre)
+        public GenreDTO Update(GenreDTO genre)
         {
-            return _GenreService.Update(Genre);
+            return _genreService.Update(genre);
         }
     }
 }

@@ -45,24 +45,24 @@ namespace GameStore.Service.Data
         /// <summary>
         /// Преобразование строки списка жанров в List<string>
         /// </summary>
-        /// <param name="Genres">Строка списка жанров с разделителем "/"</param>
+        /// <param name="genres">Строка списка жанров с разделителем "/"</param>
         /// <returns>Список жанров</returns>
-        public static List<string> GenresToList(string Genres)
+        public static List<string> GenresToList(string genres)
         {
-            return Genres.Replace(" ", "").Split('/').ToList();
+            return genres.Replace(" ", "").Split('/').ToList();
         }
 
         /// <summary>
         /// Поиск списка жанров в источнике
         /// </summary>
-        /// <param name="Genres">Список жанров которые необходимо найти</param>
-        /// <param name="Source">Источник списка жанров</param>
+        /// <param name="genres">Список жанров которые необходимо найти</param>
+        /// <param name="source">Источник списка жанров</param>
         /// <returns>Список найденых жанров</returns>
-        public static List<Genre> FindGenresByName(List<string> Genres, List<Genre> Source)
+        public static List<Genre> FindGenresByName(List<string> genres, List<Genre> source)
         {
             List<Genre> result = new List<Genre>();
-            foreach (var genre in Genres)
-                if (Source.Find(s => s.Name == genre) is { } item)
+            foreach (var genre in genres)
+                if (source.Find(s => s.Name == genre) is { } item)
                     result.Add(item);
 
             return result;

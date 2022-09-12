@@ -16,54 +16,55 @@ namespace GameStore.Service.Services.InSQL
     public class SqlGenreService : IGenreService
     {
         private readonly GameStoreDB _db;
-        private readonly ILogger<SqlGenreService> _Logger;
+        private readonly ILogger<SqlGenreService> _logger;
 
-        public SqlGenreService(GameStoreDB GameStoreDB, ILogger<SqlGenreService> Logger)
+        public SqlGenreService(GameStoreDB gameStoreDB, ILogger<SqlGenreService> logger)
         {
-            _db = GameStoreDB;
-            _Logger = Logger;
+            _db = gameStoreDB;
+            _logger = logger;
         }
-        public int Add(GenreDTO Genre)
+
+        public int Add(GenreDTO genre)
         {
             int id = -1;    //В случае ошибки при создании, вернется несуществующий id
             try
             {
-                Genre.Id = 0;
-                _db.Genres.Add(Genre.FromDTO());
+                genre.Id = 0;
+                _db.Genres.Add(genre.FromDTO());
                 _db.SaveChanges();
-                id = _db.Genres.FirstOrDefault(g => g.Name == Genre.Name).Id;
+                id = _db.Genres.FirstOrDefault(g => g.Name == genre.Name).Id;
             }
             catch (Exception)
             {
-                _Logger.LogError("Не удалось создать жанр {0}", Genre.Name);
+                _logger.LogError("Не удалось создать жанр {0}", genre.Name);
             }
             return id;
         }
 
-        public IEnumerable<GenreDTO> Add(IEnumerable<GenreDTO> Genres)
+        public IEnumerable<GenreDTO> Add(IEnumerable<GenreDTO> genres)
         {
-            List<GenreDTO> genres = new List<GenreDTO>();
+            List<GenreDTO> genresResult = new List<GenreDTO>();
 
             try
             {
-                foreach (var item in Genres)
+                foreach (var item in genres)
                 {
                     var id= Add(item);
                     //Добавляем созданные жанры в результат
-                    genres.Add(_db.Genres.FirstOrDefault(g => g.Id == id).ToDTO());
+                    genresResult.Add(_db.Genres.FirstOrDefault(g => g.Id == id).ToDTO());
                 }
             }
             catch (Exception)
             {
-                var genres_name = String.Join(',', Genres.Select(g => g.Name));
-                _Logger.LogError("Не удалось создать список жанров {0}", genres_name);
+                var genresName = String.Join(',', genres.Select(g => g.Name));
+                _logger.LogError("Не удалось создать список жанров {0}", genresName);
             }
-            return genres.AsEnumerable();
+            return genresResult.AsEnumerable();
         }
 
-        public bool Delete(int Id)
+        public bool Delete(int id)
         {
-            var genre = _db.Genres.FirstOrDefault(p => p.Id == Id);
+            var genre = _db.Genres.FirstOrDefault(p => p.Id == id);
             try
             {
                 //Удаляем игровой жанр
@@ -72,7 +73,7 @@ namespace GameStore.Service.Services.InSQL
             }
             catch (Exception)
             {
-                _Logger.LogError("Не удалось удалить жанр Id:{0}", Id);
+                _logger.LogError("Не удалось удалить жанр Id:{0}", id);
                 return false;
             }
 
@@ -83,36 +84,36 @@ namespace GameStore.Service.Services.InSQL
             .Include(g => g.Games).
             Select(g => g.ToDTO());
 
-        public GenreDTO Get(int Id) => _db.Genres
+        public GenreDTO Get(int id) => _db.Genres
             .Include(g => g.Games).
-            FirstOrDefault(g => g.Id == Id).
+            FirstOrDefault(g => g.Id == id).
             ToDTO();
 
-        public GenreDTO GetByName(string Name) => _db.Genres
+        public GenreDTO GetByName(string name) => _db.Genres
             .Include(g => g.Games).
-            FirstOrDefault(g => g.Name == Name).
+            FirstOrDefault(g => g.Name == name).
             ToDTO();
 
-        public GenreDTO Update(GenreDTO Genre)
+        public GenreDTO Update(GenreDTO genre)
         {
             GenreDTO result = null;
-            int id = Genre.Id;
+            int id = genre.Id;
             try
             {
-                if (Genre.Id == 0)  //Если Id==0 в DTO модели, то нужно создать новый игровой жанр
-                    id = Add(Genre);
+                if (genre.Id == 0)  //Если Id==0 в DTO модели, то нужно создать новый игровой жанр
+                    id = Add(genre);
                 else
                 {                       //Иначе, редактируем существующий игровой жанр
                     _db.Genres.
-                        FirstOrDefault(g => g.Id == Genre.Id).
-                        Name = Genre.Name;
+                        FirstOrDefault(g => g.Id == genre.Id).
+                        Name = genre.Name;
                     _db.SaveChanges();
                 }
                 result = _db.Genres.FirstOrDefault(g => g.Id == id).ToDTO();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _Logger.LogError("Не удалось обновить жанр {0}", Genre.Name);
+                _logger.LogError("Не удалось обновить жанр {0}", genre.Name);
             }
 
             return result;

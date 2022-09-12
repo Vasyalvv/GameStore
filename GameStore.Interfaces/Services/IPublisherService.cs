@@ -19,38 +19,37 @@ namespace GameStore.Interfaces.Services
         /// <summary>
         /// Получить издателя по идентификатору
         /// </summary>
-        /// <param name="Id">Идентификатор издателя</param>
+        /// <param name="id">Идентификатор издателя</param>
         /// <returns>Издатель</returns>
-        PublisherDTO Get(int Id);
+        PublisherDTO Get(int id);
 
         /// <summary>
         /// Получить издателя по названию
         /// </summary>
-        /// <param name="Name">Название издателя</param>
+        /// <param name="name">Название издателя</param>
         /// <returns>издателя</returns>
-        PublisherDTO GetByName(string Name);
-
+        PublisherDTO GetByName(string name);
 
         /// <summary>
         /// Добавить издателя
         /// </summary>
-        /// <param name="Publisher">Издатель</param>
+        /// <param name="publisher">Издатель</param>
         /// <returns>Идентификатор добавленного издателя</returns>
-        int Add(PublisherDTO Publisher);
+        int Add(PublisherDTO publisher);
 
         /// <summary>
         /// Обновить данные издателя
         /// </summary>
-        /// <param name="Publisher">Издатель</param>
+        /// <param name="publisher">Издатель</param>
         /// <returns>Результат обновления</returns>
-        PublisherDTO Update(PublisherDTO Publisher);
+        PublisherDTO Update(PublisherDTO publisher);
 
         /// <summary>
         /// Удалить издателя
         /// </summary>
-        /// <param name="Id">Идентификатор издателя</param>
+        /// <param name="id">Идентификатор издателя</param>
         /// <returns>Результат удаления</returns>
-        bool Delete(int Id);
+        bool Delete(int id);
     }
 
 }

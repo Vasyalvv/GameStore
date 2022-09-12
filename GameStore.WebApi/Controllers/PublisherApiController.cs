@@ -16,34 +16,34 @@ namespace GameStore.WebApi.Controllers
     [ApiController]
     public class PublisherApiController : ControllerBase, IPublisherService
     {
-        private readonly IPublisherService _PublisherService;
+        private readonly IPublisherService _publisherService;
 
-        public PublisherApiController(IPublisherService PublisherService)
+        public PublisherApiController(IPublisherService publisherService)
         {
-            _PublisherService = PublisherService;
+            _publisherService = publisherService;
         }
 
 
         /// <summary>
         /// Добавление нового издателя игр
         /// </summary>
-        /// <param name="Publisher">Добавляемый издатель</param>
+        /// <param name="publisher">Добавляемый издатель</param>
         /// <returns>Идентификатор добавленного издателя, возвращается -1 в случае ошибки</returns>
         [HttpPost]
-        public int Add(PublisherDTO Publisher)
+        public int Add(PublisherDTO publisher)
         {
-            return _PublisherService.Add(Publisher);
+            return _publisherService.Add(publisher);
         }
 
         /// <summary>
         /// Удаление издателя игр
         /// </summary>
-        /// <param name="Id">Идентификатор удаляемого издателя</param>
+        /// <param name="id">Идентификатор удаляемого издателя</param>
         /// <returns>Результат удаления</returns>
-        [HttpDelete("{Id}")]
-        public bool Delete(int Id)
+        [HttpDelete("{id}")]
+        public bool Delete(int id)
         {
-            return _PublisherService.Delete(Id);
+            return _publisherService.Delete(id);
         }
 
         /// <summary>
@@ -53,40 +53,40 @@ namespace GameStore.WebApi.Controllers
         [HttpGet]
         public IEnumerable<PublisherDTO> Get()
         {
-            return _PublisherService.Get();
+            return _publisherService.Get();
         }
 
         /// <summary>
         /// Получение издателя по идентификатору
         /// </summary>
-        /// <param name="Id">Идентификатор издателя</param>
+        /// <param name="id">Идентификатор издателя</param>
         /// <returns>Издатель</returns>
-        [HttpGet("{Id}")]
-        public PublisherDTO Get(int Id)
+        [HttpGet("{id}")]
+        public PublisherDTO Get(int id)
         {
-            return _PublisherService.Get(Id);
+            return _publisherService.Get(id);
         }
 
         /// <summary>
         /// Получение издателя по названию
         /// </summary>
-        /// <param name="Name">Название издателя</param>
+        /// <param name="name">Название издателя</param>
         /// <returns>Издатель</returns>
         [HttpGet("publisher")]
-        public PublisherDTO GetByName(string Name)
+        public PublisherDTO GetByName(string name)
         {
-            return _PublisherService.GetByName(Name);
+            return _publisherService.GetByName(name);
         }
 
         /// <summary>
         /// Обновление информации издателя
         /// </summary>
-        /// <param name="Publisher">Издатель</param>
+        /// <param name="publisher">Издатель</param>
         /// <returns>Обновленная запись издателя</returns>
         [HttpPut]
-        public PublisherDTO Update(PublisherDTO Publisher)
+        public PublisherDTO Update(PublisherDTO publisher)
         {
-            return _PublisherService.Update(Publisher);
+            return _publisherService.Update(publisher);
         }
     }
 }

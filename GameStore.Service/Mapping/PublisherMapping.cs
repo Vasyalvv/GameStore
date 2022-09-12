@@ -10,27 +10,27 @@ namespace GameStore.Service.Mapping
 {
     public static class PublisherMapping
     {
-        public static PublisherDTO ToDTO(this Publisher Publisher)
+        public static PublisherDTO ToDTO(this Publisher publisher)
         {
-            if (Publisher is null)
+            if (publisher is null)
                 return null;
 
             return new PublisherDTO
             {
-                Id = Publisher.Id,
-                Name = Publisher.Name
+                Id = publisher.Id,
+                Name = publisher.Name
             };
         }
 
-        public static Publisher FromDTO(this PublisherDTO PublisherDTO)
+        public static Publisher FromDTO(this PublisherDTO publisherDTO)
         {
-            if (PublisherDTO is null)
+            if (publisherDTO is null)
                 return null;
 
             return new Publisher
             {
-                Id = PublisherDTO.Id,
-                Name = PublisherDTO.Name
+                Id = publisherDTO.Id,
+                Name = publisherDTO.Name
             };
         }
     }

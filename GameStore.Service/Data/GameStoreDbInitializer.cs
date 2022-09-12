@@ -13,9 +13,9 @@ namespace GameStore.Service.Data
     {
         private readonly GameStoreDB _db;
 
-        public GameStoreDbInitializer(GameStoreDB GameStoreDB)
+        public GameStoreDbInitializer(GameStoreDB gameStoreDB)
         {
-            _db = GameStoreDB;
+            _db = gameStoreDB;
         }
 
         public void Initialize()
@@ -35,40 +35,35 @@ namespace GameStore.Service.Data
             List<Game> games = new List<Game>();
             List<Publisher> publishers = new List<Publisher>();
 
-            if (!_db.Genres.Any())
+            if (!_db.Games.Any() && !_db.Publishers.Any() && !_db.Genres.Any())
             {
                 //Заполняем список жанров и разработчиков
-                foreach (var testdata_game in TestData.Games)
+                foreach (var testDataGame in TestData.Games)
                 {
-                    foreach (var item in TestData.GenresToList(testdata_game.Genre))    //Добавляем новые жанры в список
+                    foreach (var item in TestData.GenresToList(testDataGame.Genre))    //Добавляем новые жанры в список
                         if (genres.Find(g => g.Name == item) is null)
                             genres.Add(new Genre { Name = item });
 
-                    if (publishers.Find(p => p.Name == testdata_game.Publisher) is null)
-                        publishers.Add(new Publisher { Name = testdata_game.Publisher });
+                    if (publishers.Find(p => p.Name == testDataGame.Publisher) is null)
+                        publishers.Add(new Publisher { Name = testDataGame.Publisher });
                 }
 
-
-
-
                 //Заполняем список игр
-                foreach (var testdata_game in TestData.Games)
+                foreach (var testDataGame in TestData.Games)
                 {
-                    var testdata_game_genres = TestData.FindGenresByName(TestData.GenresToList(testdata_game.Genre), genres);
+                    var testDataGameGenres = TestData.FindGenresByName(TestData.GenresToList(testDataGame.Genre), genres);
                     var game = new Game
                     {
-                        Name = testdata_game.Game,
-                        Publisher = publishers.FirstOrDefault(p=> p.Name== testdata_game.Publisher),
-                        Genres = testdata_game_genres
+                        Name = testDataGame.Game,
+                        Publisher = publishers.FirstOrDefault(p=> p.Name== testDataGame.Publisher),
+                        Genres = testDataGameGenres
                     };
 
-                    foreach (var item in testdata_game_genres)
+                    foreach (var item in testDataGameGenres)
                         item.Games.Add(game);
 
                     games.Add(game);
                 }
-
-
 
                 _db.Genres.AddRange(genres);
                 _db.Games.AddRange(games);

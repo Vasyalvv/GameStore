@@ -18,43 +18,43 @@ namespace GameStore.Interfaces.Services
         /// <summary>
         /// Получить игровой жанр по идентификатору
         /// </summary>
-        /// <param name="Id">Идентификатор игрового жанра</param>
+        /// <param name="id">Идентификатор игрового жанра</param>
         /// <returns>Игровой жанр</returns>
-        GenreDTO Get(int Id);
+        GenreDTO Get(int id);
 
         /// <summary>
         /// Получить игровой жанр по названию
         /// </summary>
-        /// <param name="Name">Название игрового жанра</param>
+        /// <param name="name">Название игрового жанра</param>
         /// <returns>Игровой жанр</returns>
-        GenreDTO GetByName(string Name);
+        GenreDTO GetByName(string name);
 
         /// <summary>
         /// Добавить игровой жанр
         /// </summary>
-        /// <param name="Genre">Игровой жанр</param>
+        /// <param name="genre">Игровой жанр</param>
         /// <returns>Идентификатор добавленного игрового жанра</returns>
-        int Add(GenreDTO Genre);
+        int Add(GenreDTO genre);
 
         /// <summary>
         /// Добавить список игровых жанров
         /// </summary>
-        /// <param name="Genres">Список игровых жанров</param>
+        /// <param name="genres">Список игровых жанров</param>
         /// <returns>Список добавленных игровых жанров</returns>
-        IEnumerable<GenreDTO> Add(IEnumerable<GenreDTO> Genres);
+        IEnumerable<GenreDTO> Add(IEnumerable<GenreDTO> genres);
 
         /// <summary>
         /// Обновить игровой жанр
         /// </summary>
-        /// <param name="Genre">Игровой жанр</param>
+        /// <param name="genre">Игровой жанр</param>
         /// <returns>Результат обновления</returns>
-        GenreDTO Update(GenreDTO Genre);
+        GenreDTO Update(GenreDTO genre);
 
         /// <summary>
         /// Удалить игровой жанр
         /// </summary>
-        /// <param name="Id">Идентификатор игровых жанров</param>
+        /// <param name="id">Идентификатор игровых жанров</param>
         /// <returns>Результат удаления</returns>
-        bool Delete(int Id);
+        bool Delete(int id);
     }
 }
