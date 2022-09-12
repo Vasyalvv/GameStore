@@ -12,7 +12,7 @@ namespace GameStore.WebApi.Controllers
     /// <summary>
     /// API контроллер взаимодействия с сущностью Игра
     /// </summary>
-    [Route("api/game")]
+    [Route("api/games")]
     [ApiController]
     public class GameApiController : ControllerBase,IGameService
     {
@@ -39,7 +39,7 @@ namespace GameStore.WebApi.Controllers
         /// </summary>
         /// <param name="Id">Идентификатор игры</param>
         /// <returns>Результат удаления</returns>
-        [HttpDelete("Id")]
+        [HttpDelete("{Id}")]
         public bool Delete(int Id)
         {
             return _GameService.Delete(Id);
@@ -60,7 +60,7 @@ namespace GameStore.WebApi.Controllers
         /// </summary>
         /// <param name="Id">Идентификатор игры</param>
         /// <returns>Ирга</returns>
-        [HttpGet("Id")]
+        [HttpGet("{Id}")]
         public GameDTO Get(int Id)
         {
             return _GameService.Get(Id);
@@ -82,7 +82,7 @@ namespace GameStore.WebApi.Controllers
         /// </summary>
         /// <param name="Name">Название жанра</param>
         /// <returns>Список игр</returns>
-        [HttpGet("genre/name/{Name}")]
+        [HttpGet("genre")]
         public IEnumerable<GameDTO> GetByGenre(string Name)
         {
             return _GameService.GetByGenre(Name);
@@ -93,7 +93,7 @@ namespace GameStore.WebApi.Controllers
         /// </summary>
         /// <param name="Name">Название игры</param>
         /// <returns>Игра</returns>
-        [HttpGet("name/{Name}")]
+        [HttpGet("game")]
         public GameDTO GetByName(string Name)
         {
             return _GameService.GetByName(Name);
