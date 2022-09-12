@@ -35,7 +35,7 @@ namespace GameStore.Service.Data
             List<Game> games = new List<Game>();
             List<Publisher> publishers = new List<Publisher>();
 
-            if (!_db.Genres.Any())
+            if (!_db.Games.Any() && !_db.Publishers.Any() && !_db.Genres.Any())
             {
                 //Заполняем список жанров и разработчиков
                 foreach (var testDataGame in TestData.Games)
@@ -47,9 +47,6 @@ namespace GameStore.Service.Data
                     if (publishers.Find(p => p.Name == testDataGame.Publisher) is null)
                         publishers.Add(new Publisher { Name = testDataGame.Publisher });
                 }
-
-
-
 
                 //Заполняем список игр
                 foreach (var testDataGame in TestData.Games)
@@ -67,8 +64,6 @@ namespace GameStore.Service.Data
 
                     games.Add(game);
                 }
-
-
 
                 _db.Genres.AddRange(genres);
                 _db.Games.AddRange(games);
